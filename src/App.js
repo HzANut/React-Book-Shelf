@@ -16,6 +16,16 @@ class BooksApp extends React.Component {
     showSearchPage: false,
   };
 
+  changeBookShelf = (book, shelfType) => {
+    BooksAPI.update(book, shelfType).then((response) => {
+      book.shelf = shelfType;
+      this.setState((currentState) => ({
+        books: currentState.books
+          .filter((currBook) => book.id !== currBook.id)
+          .concat(book),
+      }));
+    });
+  };
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState(() => ({
@@ -30,6 +40,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <BookShelf
           books={this.state.books}
+          onShelfMove={this.changeBookShelf}
           // showSearchPage={this.state.showSearchPage}
         />
       </div>

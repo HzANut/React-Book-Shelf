@@ -43,13 +43,20 @@ export default function BookShelf(props) {
               title="Currently Reading"
               shelfType="currentlyReading"
               books={props.books}
+              onShelfMove={props.onShelfMove}
             />
             <BookShelfLayer
               title="Want to Read"
               shelfType="wantToRead"
               books={props.books}
+              onShelfMove={props.onShelfMove}
             />
-            <BookShelfLayer title="Read" shelfType="read" books={props.books} />
+            <BookShelfLayer
+              title="Read"
+              shelfType="read"
+              books={props.books}
+              onShelfMove={props.onShelfMove}
+            />
           </div>
         </div>
         <div className="open-search">
